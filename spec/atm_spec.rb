@@ -1,4 +1,4 @@
-require './lib/atm.rb'
+require "./lib/atm.rb"
 
 describe Atm do
   subject { Atm.new }
