@@ -26,3 +26,7 @@ I want a secure Pin code & an expiry date on my card that allows only me access 
 As an ATM operator             
 In order to allow access to active customers             
 I want to allow withdrawals from only active accounts
+
+As a Bank Customer    
+In order to withdraw funds in even amounts  
+I want to receive funds in 5, 10 & 20$ bills

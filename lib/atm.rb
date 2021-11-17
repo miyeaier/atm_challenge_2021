@@ -63,6 +63,7 @@ class Atm
 
    def card_disable?(account_status)
     account == active
+   end
 
    def perform_transaction(amount,account)
     @funds -= amount
@@ -71,7 +72,20 @@ class Atm
       status: true,
       message:'success',
       data:Data.today,
-      amount:amount
+      amount:amount,
+      bills: add_bills(amount)
     }
   end
+  def add_bills(amount)
+    denominations =[20,10,5]
+    bills =[]
+    denominations.each do |bill|
+      while amount -bill >= 0
+        amount -= bill
+        bills << bill
+      end
+    end
+    bills
+  end
+
 end
