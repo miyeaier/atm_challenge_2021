@@ -1,12 +1,32 @@
+require 'date'
 class Atm
   attr_accessor :funds
-
   def initialize
     @funds = 1000
   end
 
-  def withdraw(value)
-    @funds -= value
+  def withdraw(amount,account)
+    case 
+    when insufficient_funnds_in_account?(amount,account)
+    
+      return
+    else
+      perform_transaction(amount,account)
+      end
+   end
+   
+   private
+   def insufficient_funnds_in_account?(amount,account)
+    amount >account.balance
+   end
+   def perform_transaction(amount,account)
+    @funds -= amount
+    account.balance = account.balance -amount
+    {
+      status: true,
+      message:'success',
+      data:Data.today,
+      amount:amount
+    }
   end
-
 end
