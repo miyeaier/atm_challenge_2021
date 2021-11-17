@@ -14,3 +14,7 @@ I want each person to have a separate account
 As an ATM operator           
 In order to ensure that an Account holder can only withdraw funds that he has balance for           
 I want to allow a withdrawal only if there are sufficient funds in the account
+
+As an ATM operator
+In order for our costumers to withdraw funds
+I need to make sure that we only allow withdrawals if there are funds available
