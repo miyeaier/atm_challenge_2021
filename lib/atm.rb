@@ -12,22 +12,34 @@ class Atm
     when insufficient_funds_in_account?(amount,account)
       {status:false,
         message:'insufficient funds in account',
-        date:Date.today }
+        date:Date.today
+      }
     when insufficient_funds_in_atm?(amount)
       { status:false,
         message:'insufficient funds in ATM',
-        date:Date.today }
+        date:Date.today
+      }
     when incorrect_pin?(pin_code,account.pin_code)
           {status: false,
            message:'wrong pin',
-           date:Date.today},
+           date:Date.today
+          },
      when card_expired?(account.exp_date)
       {
         status: false,
         message:'card expored',
-        date: Data.today}
+        date: Date.today
+      }
+
+      when card_disable?(account.account_status)
+        {
+          status:fales,
+          message:'card disable',
+          date:Date.today
+        }
     else
       perform_transaction(amount,account)
+
     end
    end
    
@@ -46,9 +58,12 @@ class Atm
    end
 
    def card_expired?(exp_data)
-    Data.strptime(exp_date,'%m/%Y') <Date.today
+    Date.strptime(exp_date,'%m/%Y') <Date.today
    end
-   
+
+   def card_disable?(account_status)
+    account == active
+
    def perform_transaction(amount,account)
     @funds -= amount
     account.balance = account.balance - amount
