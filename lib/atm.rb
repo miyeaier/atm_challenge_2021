@@ -1,61 +1,67 @@
-require 'date'
+require "date"
+require "pry"
+
 class Atm
   attr_accessor :funds
-  
+
   def initialize
     @funds = 1000
   end
 
-  def withdraw(amount, pin_code,account)
-    case 
-    when insufficient_funds_in_account?(amount,account)
-      {
-        status:false,
-        message:'insufficient funds in account',
-        date:Date.today
-      }
-    when insufficient_funds_in_ATM?(amount)
-      { 
-        status:false,
-        message:'insufficient funds in ATM',
-        date:Date.today
-      }
-    when incorrect_pin?(pin_code,account.pin_code)
-      {
-            status: false,
-           message:'wrong pin',
-           date:Date.today
-      }
-     when card_expired?(account.exp_date)
+  def withdraw(amount, pin_code, account)
+    case
+    when insufficient_funds_in_account?(amount, account)
+      binding.pry
       {
         status: false,
-        message:'card expored',
-        date: Date.today
+        message: "insufficient funds in account",
+        date: Date.today,
       }
-
-     when account_disabled?(account.account_status)
+    when insufficient_funds_in_ATM?(amount)
+      binding.pry
       {
-          status:false,
-          message:'account disabled',
-          date:Date.today
+        status: false,
+        message: "insufficient funds in ATM",
+        date: Date.today,
+      }
+    when incorrect_pin?(pin_code, account.pin_code)
+      binding.pry
+      {
+        status: false,
+        message: "wrong pin",
+        date: Date.today,
+      }
+    when card_expired?(account.exp_date)
+      binding.pry
+      {
+        status: false,
+        message: "card expored",
+        date: Date.today,
+      }
+    when account_disabled?(account.account_status)
+      binding.pry
+      {
+        status: false,
+        message: "account disabled",
+        date: Date.today,
       }
     else
-      perform_transaction(amount,account)
-
+      perform_transaction(amount, account)
     end
-   end
-   
-   private
-   
-   def insufficient_funds_in_account?(amount,account)
+  end
+
+  private
+
+  def insufficient_funds_in_account?(amount, account)
     amount > account.balance
-   end
+  end
 
-   def insufficient_funds_in_ATM?(amount)
+  def insufficient_funds_in_ATM?(amount)
     @funds < amount
-   end 
+  end
 
-   def perform_transaction(amount, account)
+  def perform_transaction(amount, account)
+    binding.pry
     @funds -= amount
     account.balance = account.balance - amount
     {
@@ -67,24 +73,23 @@ class Atm
     }
   end
 
-
-   def incorrect_pin?(pin_code,actual_pin)
+  def incorrect_pin?(pin_code, actual_pin)
     pin_code != actual_pin
-   end
+  end
 
-   def card_expired?(exp_data)
-    Date.strptime(exp_data,'%m/%Y') <Date.today
-   end
+  def card_expired?(exp_data)
+    Date.strptime(exp_data, "%m/%Y") < Date.today
+  end
 
-   def account_disable?(account_status)
+  def account_disable?(account_status)
     account == active
-   end
+  end
 
   def add_bills(amount)
-    denominations =[20,10,5]
-    bills =[]
+    denominations = [20, 10, 5]
+    bills = []
     denominations.each do |bill|
-      while amount -bill >= 0
+      while amount - bill >= 0
         amount -= bill
         bills << bill
       end

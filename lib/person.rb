@@ -1,4 +1,5 @@
-require 'date'
+require "date"
+
 class Person
-  attr_accessor :name,:cash,:account
+  attr_accessor :name, :cash, :account
 end
