@@ -33,10 +33,10 @@ class Atm
         date: Date.today
       }
 
-     when card_disabled?(account.account_status)
+     when account_disabled?(account.account_status)
       {
           status:false,
-          message:'card disabled',
+          message:'account disabled',
           date:Date.today
       }
     else
@@ -76,7 +76,7 @@ class Atm
     Date.strptime(exp_data,'%m/%Y') <Date.today
    end
 
-   def card_disable?(account_status)
+   def account_disable?(account_status)
     account == active
    end
 
