@@ -30,3 +30,7 @@ I want to allow withdrawals from only active accounts
 As a Bank Customer    
 In order to withdraw funds in even amounts  
 I want to receive funds in 5, 10 & 20$ bills
+
+As a Customer
+In order to manage my funds
+I need to have a personal account
