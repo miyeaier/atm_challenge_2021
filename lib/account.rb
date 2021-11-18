@@ -2,7 +2,7 @@ require 'date'
 class Account
   STANDARD_VALIDITY_YRS = 5
 
-  attr_accessor :exp_date,:account_status
+  attr_accessor :exp_date,:account_status,:pin_code,:balance
 
   def set_expire_date
   Date.today.next_year(Account::STANDARD_VALIDITY_YRS).strftime('%m/%y')
