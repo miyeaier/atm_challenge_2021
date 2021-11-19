@@ -25,7 +25,7 @@ describe Account do
 
   it "is expected deactivates account using the class method" do
     Account.deactivate(subject)
-    expect(subject.account_status).to eq :deactivate
+    expect(subject.account_status).to eq :deactivated
   end
 
   it "is expected to have an owner" do

@@ -32,7 +32,7 @@ class Atm
     when card_expired?(account.exp_date)
       {
         status: false,
-        message: "card expirid",
+        message: "card expired",
         date: Date.today,
       }
     when account_disabled?(account.account_status)
@@ -74,20 +74,6 @@ class Atm
     }
   end
 
-  def incorrect_pin?(pin_code, actual_pin)
-    pin_code != actual_pin
-    #检查两个操作数的值是否相等，如果不相等则条件为真。(a != b) 为真。
-  end
-
-  def card_expired?(exp_date)
-    #意思就是卡过期了是时间比我们之前定义的4/19要大就是比现在的日期大就是过期卡
-    Date.strptime(exp_date, "%m/%y") > Date.today
-  end
-
-  def account_disabled?(account_status)
-    account_status == :disabled
-  end
-
   def add_bills(amount)
     denominations = [20, 10, 5]
     bills = []
@@ -98,5 +84,19 @@ class Atm
       end
     end
     bills
+  end
+
+  def incorrect_pin?(pin_code, actual_pin)
+    pin_code != actual_pin
+    #检查两个操作数的值是否相等，如果不相等则条件为真。(a != b) 为真。
+  end
+
+  def card_expired?(exp_date)
+    #意思就是卡过期了是时间比我们之前定义的4/19要大就是比现在的日期大就是过期卡
+    Date.strptime(exp_date, "%m/%y") < Date.today
+  end
+
+  def account_disabled?(account_status)
+    account_status == :disabled
   end
 end
