@@ -3,45 +3,41 @@ require "pry"
 
 class Atm
   attr_accessor :funds
+
   def initialize
     @funds = 1000
   end
 
-  def withdraw(amount,pin_code,account)
+  def withdraw(amount, pin_code, account)
     #如果想要取钱就必须满足账户里的钱大于要取的钱所以我们要写一下code来说清楚什么情况下钱会取不成功else什么时候会成功
     case
     when insufficient_funds_in_account?(amount, account)
-   
       {
         status: false,
         message: "insufficient funds in account",
         date: Date.today,
       }
     when insufficient_funds_in_ATM?(amount)
- 
       {
         status: false,
         message: "insufficient funds in ATM",
         date: Date.today,
       }
     when incorrect_pin?(pin_code, account.pin_code)
-     
       {
         status: false,
         message: "wrong pin",
         date: Date.today,
       }
     when card_expired?(account.exp_date)
- 
       {
         status: false,
-        message:"card expirid",
-        date:Date.today,
+        message: "card expirid",
+        date: Date.today,
       }
     when account_disabled?(account.account_status)
-  
       {
-        status:false,
+        status: false,
         message: "account disabled",
         date: Date.today,
       }
@@ -51,7 +47,8 @@ class Atm
   end
 
   private
-#一下是以上的算法
+
+  #一下是以上的算法
   def insufficient_funds_in_account?(amount, account)
     #如果账户资金不足的情况是取的钱大于账户里的
     amount > account.balance
