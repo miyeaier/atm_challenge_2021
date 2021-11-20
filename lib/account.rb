@@ -21,7 +21,7 @@ class Account
     Date.today.next_year(STANDARD_VALIDITY_YRS).strftime("%m/%y")
   end
 
-  def set_owner(obj)
+  def set_owner(obj)#没理解obj哪里来
     obj == nil ? missing_owner : @owner = obj
   end
 

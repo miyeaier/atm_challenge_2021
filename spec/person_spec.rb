@@ -5,11 +5,12 @@ describe Person do
   subject { described_class.new(name: "Miyesier") }
 
   it "is expected to have a :name on initialize" do #账户持有人要有名字
-    expect(subject.name).not_to be nil
+    expect(subject.name).not_to be nil#例子： @io.should_not be_nil #passes (shouldn't!!)
   end
 
   it "is expected to raise an error if no name is set" do #如果没有名字就显示出错
-    expect { described_class.new }.to raise_error "A name is required"
+    expect { described_class.new }.to raise_error(RuntimeError, "A name is required")
+    #expect { subject.deposit(100) }.to raise_error(RuntimeError, "No account present")
   end
 
   it "is expected to have a :cash attribute with the value of 0 on initialize" do #在持卡人刚拥有卡的时候确保卡里没钱
@@ -47,23 +48,23 @@ describe Person do
   end
       it "funds are added to the account balance - deducted from cash" do #资金被添加到账户余额 - 从现金中扣除
         subject.cash = 100
-        subject.despostit(100)
+        subject.deposit(100)
         expect(subject.account.balance).to be 100
         expect(subject.cash).to be 0
       
   end
 
-  it 'can withdraw fund'do
+  it 'can withdraw fund'do#什么是lamba？！！
     command =lambda { subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account,atm: atm)}
     expect(command.call).to be_truthy
   end
 
-  it'withdraw is expected to raise an error if no ATM is passed in' do
+  it'withdraw is expected to raise an error if no ATM is passed in' do#没懂 为什么会有没有atm的情况！！
     command = lambda{ subject.withdraw(amount:100,pin: subject.account.pin_code,account:subject.account)}
     expect{ command.call }.to raise_error'An ATM is required'
   end
 
-  it 'fund are added to cash -deducted from account balance'do
+  it 'fund are added to cash -deducted from account balance'do#资金添加到现金 - 从账户余额中扣除
     subject.cash = 100
     subject.deposit(100)
     subject.withdraw(amount: 100,pin: subject.account.pin_code,account: subject.account, atm: atm)
