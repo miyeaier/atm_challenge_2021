@@ -1,11 +1,10 @@
 require "./lib/account.rb"
 describe Account do
   subject { Account.new }
-  subject { described_class.new({ owner: person }) } #也修改subject主题里的内容为owner是个人
-
   let(:person) {
     instance_double("Person", name: "Miyesier") #给账户所有人定义单一属性
   }
+  subject { described_class.new({ owner: person }) } #也修改subject主题里的内容为owner是个人
 
   it "check the lenght of number" do
     number = 1234
