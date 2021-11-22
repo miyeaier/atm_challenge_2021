@@ -1,37 +1,39 @@
-# atm_challenge_2021
+ atm_challenge_2021
+# The code
+ The atm_challenge is a  simple ruby based project,
+ In order to produce good quality code,we work in a test driven way and unit test this coade 
+ According to the requirements and logical needs set by the course material we need to have a  ATM machine, 
+ a withdrawer and a deposit, so we write the code based on these（ATM/Account/Person) three classes to complete the whole project.
 
-As a User  
-In order to make a withdrawal  
-The ATM needs to have funds
+# Dependencies
+Game framework we used Rspec for unit test
 
-As a User  
-In order to know if my withdrawal was successful or unsuccessful  
-I want to receive a message with my withdrawal details
+# Setup
+We’ll be write our application using Test Driven Development(RSpec),In order to be able to use it we need to install it.
+There are two ways to install libraries (gems). 
+A direct install from your terminal(gem install rspec)
+.$ gem install bundler
+or by adding a gem as a dependency to your application using Bundler ,you just add a gem to a specific file named Gemfile.
+And run bundle install again.
+The next step is to initialize RSpec and configure it for our needs.
+.$ rspec --init
+Edit the .rspec file and add --format documentation to see a more verbose rspec output. 
+.rspec file needs to look like this.
+--format documentation
+--color
+--require spec_helper
 
-As an ATM operator  
-In order for the right person to make a withdrawal  
-I want each person to have a separate account
+# Instructions
 
-As an ATM operator  
-In order to ensure that an Account holder can only withdraw funds that he has balance for  
-I want to allow a withdrawal only if there are sufficient funds in the account
 
-As an ATM operator
-In order for our costumers to withdraw funds
-I need to make sure that we only allow withdrawals if there are funds available
+# Acknowledgements
+Thanks to the in-depth analysis of the teacher on the course materials, so that I can have enough confidence to complete them in the future challenges. 
+Thanks to classmate Giovanni for helping to optimize my code in time when encountering problems and let me better understand where my problems are.
 
-As a Customer  
-To keep my funds secure  
-I want a secure Pin code & an expiry date on my card that allows only me access to my funds
+# Updates/Improvements plans
+Because it is in the early stage of learning coding, I haven’t found any areas for improvement,
+because my knowledge has not reached the point where I can find problems, but in the future I will be more proficient in programming. 
+I will check this project. Optimize it
 
-As an ATM operator  
-In order to allow access to active customers  
-I want to allow withdrawals from only active accounts
-
-As a Bank Customer  
-In order to withdraw funds in even amounts  
-I want to receive funds in 5, 10 & 20$ bills
-
-As a Customer
-In order to manage my funds
-I need to have a personal account
+# Licensethe
+ All of our projects will be under the MIT-license during this course.
