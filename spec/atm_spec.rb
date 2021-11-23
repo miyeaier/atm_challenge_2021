@@ -46,7 +46,7 @@ describe Atm do
     expect(subject.withdraw(105, "1234", account)).to eq expected_output
   end
 
-  it "reject withdraw if ATM has insufficient funds" do #钱不够情况在ATM
+  it "is expected to reject withdraw if ATM has insufficient funds" do #钱不够情况在ATM
     subject.funds = 50 #atm里只有50
     expected_output = {
       status: false,
@@ -56,7 +56,7 @@ describe Atm do
     expect(subject.withdraw(100, "1234", account)).to eq expected_output
   end
 
-  it "reject withdraw if the pin is wrong " do
+  it "is expected to reject withdraw if the pin is wrong " do
     expected_output = {
       status: false,
       message: "wrong pin",
@@ -76,7 +76,7 @@ describe Atm do
     expect(subject.withdraw(5, "1234", account)).to eq expected_output
   end
 
-  it "reject withdraw if the  account is disabled" do
+  it "ris expected to eject withdraw if the  account is disabled" do
     allow(account).to receive(:account_status).and_return(:disabled)
     expected_output = {
       status: false,
